@@ -5,6 +5,7 @@ name: $(Version)
 variables:
   Configuration: 'Release'
 
+pr: none
 trigger: none
 
 pool:
