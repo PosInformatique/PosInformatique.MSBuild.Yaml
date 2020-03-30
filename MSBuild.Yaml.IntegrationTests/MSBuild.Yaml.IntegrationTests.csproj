@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>PosInformatique.MSBuild.Yaml.IntegrationTests</AssemblyName>
+    <RootNamespace>PosInformatique.MSBuild.Yaml.IntegrationTests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PosInformatique.MSBuild.Yaml" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="OtherExample.yaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="OtherExample.yaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="API.Designer.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <YamlToJsonFile Include="API.yaml" />
+    <YamlToJsonFile Include="OtherExample.yaml" />
+  </ItemGroup>
+
+</Project>

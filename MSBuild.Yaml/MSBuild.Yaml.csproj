@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>PosInformatique.MSBuild.Yaml</AssemblyName>
+    <RootNamespace>PosInformatique.MSBuild.Yaml</RootNamespace>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+    <Authors>Gilles TOURREAU</Authors>
+    <Company>P.O.S Informatique</Company>
+    <Description>PosInformatique.MSBuild.Yaml is a MSBuild extension that converts YAML files into a JSON before the compilation of a Visual Studio project (C#, VB. NET, ...).</Description>
+    <Copyright>Copyright © 1999-2020 P.O.S Informatique - All rights reserved.</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/PosInformatique/PosInformatique.MSBuild.Yaml</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PosInformatique/PosInformatique.MSBuild.Yaml.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>msbuild yaml json converter</PackageTags>
+    <PackageReleaseNotes>1.0.0 - Initial version</PackageReleaseNotes>
+
+    <!-- NuGet packaging options -->
+    <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.1.1012" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="YamlDotNet" Version="8.1.0" />
+
+    <!-- Marks all packages as 'Private Assets' to packages all dependent libraries -->
+    <PackageReference Update="@(PackageReference)" PrivateAssets="All" />
+  </ItemGroup>
+
+  <Target Name="PackTaskDependencies" BeforeTargets="GenerateNuspec">
+    <!--
+    The include needs to happen after output has been copied to build output folder
+    but before NuGet generates a nuspec. See https://github.com/NuGet/Home/issues/4704.
+    -->
+    <ItemGroup>
+      <_PackageFiles Include="bin\$(Configuration)\**\*.*" Exclude="bin\$(Configuration)\**\$(AssemblyName).*">
+        <PackagePath>tasks\%(RecursiveDir)</PackagePath>
+        <Visible>false</Visible>
+        <BuildAction>Content</BuildAction>
+      </_PackageFiles>
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <None Remove="build\PosInformatique.MSBuild.Yaml.targets" />
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="build\PosInformatique.MSBuild.Yaml.targets">
+      <PackagePath>build\</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MsBuildYamlResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MsBuildYamlResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="MsBuildYamlResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MsBuildYamlResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

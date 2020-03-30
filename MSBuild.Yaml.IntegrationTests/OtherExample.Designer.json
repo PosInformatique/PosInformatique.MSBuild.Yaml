@@ -1,0 +1,24 @@
+[
+  {
+    "martin": {
+      "name": "Martin D'vloper",
+      "job": "Developer",
+      "skills": [
+        "python",
+        "perl",
+        "pascal"
+      ]
+    }
+  },
+  {
+    "tabitha": {
+      "name": "Tabitha Bitumenn",
+      "job": "Developer",
+      "skills": [
+        "lisp",
+        "fortran",
+        "erlang"
+      ]
+    }
+  }
+]
