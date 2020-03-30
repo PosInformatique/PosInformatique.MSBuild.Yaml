@@ -1,7 +1,7 @@
 # Build definition used for the Continuous Integration
 
 variables:
-  Configuration: 'Debug'
+  Configuration: 'Release'
   Platform: 'Any CPU'
 
 trigger: none
@@ -25,24 +25,27 @@ steps:
     restoreSolution: 'PosInformatique.MSBuild.Yaml.sln'
     feedsToUse: 'select'
 
-# Build the solution
+# Build the MSBuild.Yaml project
 - task: VSBuild@1
-  displayName: 'Build the solution'
+  displayName: 'Build the MSBuild.Yaml project'
   inputs:
-    solution: 'PosInformatique.MSBuild.Yaml.sln'
+    solution: 'MSBuild.Yaml/MSBuild.Yaml.csproj'
+    msbuildArgs: '/p:Version=$(Version) /p:AssemblyVersion=$(AssemblyVersion)'
     platform: '$(Platform)'
     configuration: '$(Configuration)'
     msbuildArchitecture: 'x64'
 
-# Run unit tests
-- task: VSTest@2
-  displayName: 'Run unit tests'
+# Copy files to artifacts staging directory
+- task: CopyFiles@2
+  displayName: 'Copy files to artifacts staging directory'
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*.tests.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    platform: '$(Platform)'
-    configuration: '$(Configuration)'
+    Contents: '**\bin\$(Platform)\$(Configuration)\**'
+    TargetFolder: '$(Build.Artifactstagingdirectory)'
+
+# Publish artifacts
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
