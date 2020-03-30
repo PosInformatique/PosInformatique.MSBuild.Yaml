@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSBuild.Yaml", "MSBuild.Yaml\MSBuild.Yaml.csproj", "{EC549FB9-5561-4AC7-9F7F-CCA8824B3F97}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSBuild.Yaml.IntegrationTests", "MSBuild.Yaml.IntegrationTests\MSBuild.Yaml.IntegrationTests.csproj", "{3DFC9E00-7D03-4099-9E1F-12A12BF52399}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSBuild.Yaml.Tests", "MSBuild.Yaml.Tests\MSBuild.Yaml.Tests.csproj", "{0CC1C585-2C36-474E-A278-AE07D2C42BAD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{90774C59-7701-43C8-8550-010CAD1EC729}"
@@ -38,10 +36,6 @@ Global
 		{EC549FB9-5561-4AC7-9F7F-CCA8824B3F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC549FB9-5561-4AC7-9F7F-CCA8824B3F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC549FB9-5561-4AC7-9F7F-CCA8824B3F97}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DFC9E00-7D03-4099-9E1F-12A12BF52399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DFC9E00-7D03-4099-9E1F-12A12BF52399}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DFC9E00-7D03-4099-9E1F-12A12BF52399}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DFC9E00-7D03-4099-9E1F-12A12BF52399}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0CC1C585-2C36-474E-A278-AE07D2C42BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CC1C585-2C36-474E-A278-AE07D2C42BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CC1C585-2C36-474E-A278-AE07D2C42BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
