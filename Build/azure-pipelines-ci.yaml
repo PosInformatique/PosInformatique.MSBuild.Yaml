@@ -2,7 +2,7 @@
 
 variables:
   Configuration: 'Debug'
-  Platform: 'AnyCPU'
+  Platform: 'Any CPU'
 
 pr:
 - master
@@ -21,12 +21,12 @@ steps:
     versionSpec: '4.4.1'
 
 # Restore NuGet packages
-#- task: NuGetCommand@2
-#  displayName: 'Restore NuGet packages'
-#  inputs:
-#    command: 'restore'
-#    restoreSolution: 'PosInformatique.MSBuild.Yaml.sln'
-#    feedsToUse: 'select'
+- task: NuGetCommand@2
+  displayName: 'Restore NuGet packages'
+  inputs:
+    command: 'restore'
+    restoreSolution: 'PosInformatique.MSBuild.Yaml.sln'
+    feedsToUse: 'select'
 
 # Build the solution
 - task: VSBuild@1
@@ -35,7 +35,6 @@ steps:
     solution: 'PosInformatique.MSBuild.Yaml.sln'
     platform: '$(Platform)'
     configuration: '$(Configuration)'
-    restoreNugetPackages: true
     msbuildArchitecture: 'x64'
 
 # Run unit tests
