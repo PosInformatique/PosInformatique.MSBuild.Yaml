@@ -4,10 +4,7 @@ variables:
   Configuration: 'Debug'
   Platform: 'Any CPU'
 
-pr:
-- master
-- develop
-- releases/*
+trigger: none
 
 pool:
   vmImage: 'windows-latest'

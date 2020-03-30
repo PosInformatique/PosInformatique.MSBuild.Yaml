@@ -4,6 +4,8 @@ variables:
   Configuration: 'Debug'
   Platform: 'Any CPU'
 
+trigger: none
+
 pr:
 - master
 - develop
