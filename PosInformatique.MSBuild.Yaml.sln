@@ -23,6 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\YamlToJsonTaskDocumentation.md = Documentation\YamlToJsonTaskDocumentation.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C8C2DA53-5842-49A7-A92B-F27A5C16D75B}"
+	ProjectSection(SolutionItems) = preProject
+		Build\azure-pipelines-ci.yaml = Build\azure-pipelines-ci.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +52,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00A4369C-80FA-469D-8CF6-30EC4051B6FF} = {90774C59-7701-43C8-8550-010CAD1EC729}
+		{C8C2DA53-5842-49A7-A92B-F27A5C16D75B} = {90774C59-7701-43C8-8550-010CAD1EC729}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF53B0F1-67B9-47FD-AB4F-E859D211B332}
