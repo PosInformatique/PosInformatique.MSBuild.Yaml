@@ -1,5 +1,7 @@
 # Build definition used for the Continuous Integration
 
+name: $(Version)
+
 variables:
   Configuration: 'Release'
   Platform: 'Any CPU'
