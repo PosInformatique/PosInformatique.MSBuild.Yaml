@@ -1,0 +1,60 @@
+# Build definition used for the Continuous Integration
+
+name: $(Version)
+
+variables:
+  Configuration: 'Release'
+
+pr: none
+trigger: none
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+
+# Install NuGet 4.4.1
+- task: NuGetToolInstaller@1
+  displayName: 'Install NuGet 4.4.1'
+  inputs:
+    versionSpec: '4.4.1'
+
+# Restore NuGet packages
+- task: NuGetCommand@2
+  displayName: 'Restore NuGet packages'
+  inputs:
+    command: 'restore'
+    restoreSolution: 'PosInformatique.MSBuild.Yaml.sln'
+    feedsToUse: 'select'
+
+# Build the MSBuild.Yaml project
+- task: VSBuild@1
+  displayName: 'Build the MSBuild.Yaml project'
+  inputs:
+    solution: 'MSBuild.Yaml/MSBuild.Yaml.csproj'
+    msbuildArgs: '/p:Version=$(Version) /p:AssemblyVersion=$(AssemblyVersion)'
+    configuration: '$(Configuration)'
+    msbuildArchitecture: 'x64'
+
+# Copy files to artifacts staging directory
+- task: CopyFiles@2
+  displayName: 'Copy files to artifacts staging directory'
+  inputs:
+    Contents: '**\bin\$(Configuration)\**'
+    TargetFolder: '$(Build.Artifactstagingdirectory)'
+
+# Publish artifacts
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: NuGetCommand@2
+  displayName: 'Publish on nuget.org'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'nuget.org'
