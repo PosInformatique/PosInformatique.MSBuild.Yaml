@@ -4,7 +4,6 @@ name: $(Version)
 
 variables:
   Configuration: 'Release'
-  Platform: 'Any CPU'
 
 trigger: none
 
@@ -33,7 +32,6 @@ steps:
   inputs:
     solution: 'MSBuild.Yaml/MSBuild.Yaml.csproj'
     msbuildArgs: '/p:Version=$(Version) /p:AssemblyVersion=$(AssemblyVersion)'
-    platform: '$(Platform)'
     configuration: '$(Configuration)'
     msbuildArchitecture: 'x64'
 
@@ -41,7 +39,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy files to artifacts staging directory'
   inputs:
-    Contents: '**\bin\$(Platform)\$(Configuration)\**'
+    Contents: '**\bin\$(Configuration)\**'
     TargetFolder: '$(Build.Artifactstagingdirectory)'
 
 # Publish artifacts
