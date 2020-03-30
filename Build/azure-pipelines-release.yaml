@@ -1,0 +1,51 @@
+# Build definition used for the Continuous Integration
+
+variables:
+  Configuration: 'Debug'
+  Platform: 'Any CPU'
+
+pr:
+- master
+- develop
+- releases/*
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+
+# Install NuGet 4.4.1
+- task: NuGetToolInstaller@1
+  displayName: 'Install NuGet 4.4.1'
+  inputs:
+    versionSpec: '4.4.1'
+
+# Restore NuGet packages
+- task: NuGetCommand@2
+  displayName: 'Restore NuGet packages'
+  inputs:
+    command: 'restore'
+    restoreSolution: 'PosInformatique.MSBuild.Yaml.sln'
+    feedsToUse: 'select'
+
+# Build the solution
+- task: VSBuild@1
+  displayName: 'Build the solution'
+  inputs:
+    solution: 'PosInformatique.MSBuild.Yaml.sln'
+    platform: '$(Platform)'
+    configuration: '$(Configuration)'
+    msbuildArchitecture: 'x64'
+
+# Run unit tests
+- task: VSTest@2
+  displayName: 'Run unit tests'
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*.tests.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    platform: '$(Platform)'
+    configuration: '$(Configuration)'

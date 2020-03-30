@@ -24,6 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C8C2DA53-5842-49A7-A92B-F27A5C16D75B}"
 	ProjectSection(SolutionItems) = preProject
 		Build\azure-pipelines-ci.yaml = Build\azure-pipelines-ci.yaml
+		Build\azure-pipelines-release.yaml = Build\azure-pipelines-release.yaml
 	EndProjectSection
 EndProject
 Global
