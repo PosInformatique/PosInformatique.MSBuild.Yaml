@@ -61,7 +61,7 @@ object:
             buildEngine.Setup(b => b.LogMessageEvent(It.IsAny<BuildMessageEventArgs>()))
                 .Callback((BuildMessageEventArgs args) =>
                 {
-                    args.Message.Should().Be("Converting the YAML file \"sub\\folder\\yaml.yaml\" to the \"sub\\folder\\json.json\" JSON file.");
+                    args.Message.Should().Be("Converting the YAML file \"sub\\folder\\yaml.yaml\" to the \"sub\\folder\\json.json\" JSON file (with indentation).");
                 });
 
             var task = new YamlToJson()
@@ -108,7 +108,7 @@ object:
             buildEngine.Setup(b => b.LogMessageEvent(It.IsAny<BuildMessageEventArgs>()))
                 .Callback((BuildMessageEventArgs args) =>
                 {
-                    args.Message.Should().Be("Converting the YAML file \"sub\\folder\\yaml.yaml\" to the \"sub\\folder\\json.json\" JSON file.");
+                    args.Message.Should().Be("Converting the YAML file \"sub\\folder\\yaml.yaml\" to the \"sub\\folder\\json.json\" JSON file (without indentation).");
                 });
 
             var task = new YamlToJson()

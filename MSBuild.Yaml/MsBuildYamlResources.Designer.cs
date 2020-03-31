@@ -61,7 +61,7 @@ namespace PosInformatique.MSBuild.Yaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Converting the YAML file &quot;{0}&quot; to the &quot;{1}&quot; JSON file..
+        ///   Looks up a localized string similar to Converting the YAML file &quot;{0}&quot; to the &quot;{1}&quot; JSON file ({2})..
         /// </summary>
         internal static string LogConvertingYamlFile {
             get {
@@ -75,6 +75,24 @@ namespace PosInformatique.MSBuild.Yaml {
         internal static string NoYamlInputFile {
             get {
                 return ResourceManager.GetString("NoYamlInputFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to with indentation.
+        /// </summary>
+        internal static string WithIndentation {
+            get {
+                return ResourceManager.GetString("WithIndentation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to without indentation.
+        /// </summary>
+        internal static string WithoutIndentation {
+            get {
+                return ResourceManager.GetString("WithoutIndentation", resourceCulture);
             }
         }
     }
