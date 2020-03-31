@@ -1,0 +1,16 @@
+<Project>
+  
+  <!-- Common files added in all the projects -->
+  <ItemGroup>
+    <Content Include="..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+  
+  <!-- Common NuGet packages in all the projects -->
+  <ItemGroup>
+    <PackageReference Update="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  
+</Project>
