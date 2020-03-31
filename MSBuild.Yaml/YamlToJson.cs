@@ -67,7 +67,14 @@ namespace PosInformatique.MSBuild.Yaml
                 return false;
             }
 
-            this.Log.LogMessage(MessageImportance.Normal, MsBuildYamlResources.LogConvertingYamlFile, this.YamlInputFile, this.JsonOutputFile);
+            if (this.WithIndentation)
+            {
+                this.Log.LogMessage(MessageImportance.Normal, MsBuildYamlResources.LogConvertingYamlFile, this.YamlInputFile, this.JsonOutputFile, MsBuildYamlResources.WithIndentation);
+            }
+            else
+            {
+                this.Log.LogMessage(MessageImportance.Normal, MsBuildYamlResources.LogConvertingYamlFile, this.YamlInputFile, this.JsonOutputFile, MsBuildYamlResources.WithoutIndentation);
+            }
 
             var yamlDeserializer = new Deserializer();
 

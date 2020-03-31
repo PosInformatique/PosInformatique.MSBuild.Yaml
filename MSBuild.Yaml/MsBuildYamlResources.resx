@@ -118,9 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LogConvertingYamlFile" xml:space="preserve">
-    <value>Converting the YAML file "{0}" to the "{1}" JSON file.</value>
+    <value>Converting the YAML file "{0}" to the "{1}" JSON file ({2}).</value>
   </data>
   <data name="NoYamlInputFile" xml:space="preserve">
     <value>The "{0}" YAML input file does not exist.</value>
+  </data>
+  <data name="WithIndentation" xml:space="preserve">
+    <value>with indentation</value>
+  </data>
+  <data name="WithoutIndentation" xml:space="preserve">
+    <value>without indentation</value>
   </data>
 </root>
