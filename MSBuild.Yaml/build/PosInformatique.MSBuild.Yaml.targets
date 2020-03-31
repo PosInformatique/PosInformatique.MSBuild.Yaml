@@ -21,6 +21,8 @@
 
   <!-- Targets -->
   <Target Name="ConvertYamlToJsonFiles" BeforeTargets="BeforeCompile" Inputs="@(YamlToJsonFile)" Outputs="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
-    <YamlToJson YamlInputFile="%(YamlToJsonFile.Identity)" JsonOutputFile="%(YamlToJsonFile.RelativeDir)%(YamlToJsonFile.Filename).Designer.json" />
+    <YamlToJson YamlInputFile="%(YamlToJsonFile.Identity)"
+                JsonOutputFile="%(YamlToJsonFile.RelativeDir)%(YamlToJsonFile.Filename).Designer.json"
+                WithIndentation="%(YamlToJsonFile.WithIndentation)" />
   </Target>
 </Project>

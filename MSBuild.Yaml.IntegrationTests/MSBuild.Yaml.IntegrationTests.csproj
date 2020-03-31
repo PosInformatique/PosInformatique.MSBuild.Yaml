@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <!-- To test the nuget package in the ..\MSBuild.Yaml\bin\Debug\ folder -->
-  <!--<ItemGroup>
+  <ItemGroup>
     <PackageReference Include="PosInformatique.MSBuild.Yaml" Version="1.0.5" />
-  </ItemGroup>-->
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="OtherExample.yaml" />
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <!-- For test the .targets file (just copy/paste). COMMENT IT TO TEST WITH NUGET PACKAGE -->
-  <PropertyGroup>
+  <!--<PropertyGroup>
     <_YamlToJsonTaskAssembly>$(MSBuildThisFileDirectory)..\MSBuild.Yaml\bin\Debug\netstandard2.0\PosInformatique.MSBuild.Yaml.dll</_YamlToJsonTaskAssembly>
   </PropertyGroup>
 
@@ -50,8 +50,8 @@
   <Target Name="ConvertYamlToJsonFiles" BeforeTargets="BeforeCompile" Inputs="@(YamlToJsonFile)" Outputs="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
     <YamlToJson YamlInputFile="%(YamlToJsonFile.Identity)"
                 JsonOutputFile="%(YamlToJsonFile.RelativeDir)%(YamlToJsonFile.Filename).Designer.json"
-                WithIndentation="%(YamlToJsonFile.WithIndentation)"/>
-  </Target>
+                WithIndentation="%(YamlToJsonFile.WithIndentation)" />
+  </Target>-->
   <!-- End of the code for test -->
 
 </Project>
