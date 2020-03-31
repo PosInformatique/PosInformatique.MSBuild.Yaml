@@ -57,19 +57,23 @@ package using the following command line in the Visual Studio Package Manager co
 Install-Package PosInformatique.AspNetCore.Server.AspNet
 ```
 
-- Updates the `.xxproj` file by declaring the YAML files into the `<YamlToJsonFile>`
-ItemGroup.
+- Updates the `.xxproj` file by declaring the YAML files in the `<YamlToJsonFile>`
+inside an `<ItemGroup>` element.
 
 ```xml
 <Project>
   <ItemGroup>
-    <YamlToJsonFile Include="API.yaml" />
+    <YamlToJsonFile Include="API.yaml" WithIndentation="false" />
   </ItemGroup>
 </Project>
 ```
 
 In the previous example, the `API.yaml` file will be convert into
-`API.Designer.json` JSON file.
+`API.Designer.json` JSON file with indentation disabled.
+
+The `WithIndentation` attribute allow to indent or not the output JSON file. If
+this option is not specified, the indentation is enabled (it is mean by default
+the option `WithIndentation` is defined to `true`).
 
 **REMARKS**: It is possible to changes the behavior of the `.Designer.json` file
 to be embedded as resource or copy the file into the output folder of the project.

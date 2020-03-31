@@ -6,9 +6,10 @@
     <RootNamespace>PosInformatique.MSBuild.Yaml.IntegrationTests</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="PosInformatique.MSBuild.Yaml" Version="1.0.3" />
-  </ItemGroup>
+  <!-- To test the nuget package in the ..\MSBuild.Yaml\bin\Debug\ folder -->
+  <!--<ItemGroup>
+    <PackageReference Include="PosInformatique.MSBuild.Yaml" Version="1.0.5" />
+  </ItemGroup>-->
 
   <ItemGroup>
     <None Remove="OtherExample.yaml" />
@@ -23,8 +24,34 @@
   </ItemGroup>
 
   <ItemGroup>
-    <YamlToJsonFile Include="API.yaml" />
+    <YamlToJsonFile Include="API.yaml" WithIndentation="false" />  <!-- Disable indentation -->
     <YamlToJsonFile Include="OtherExample.yaml" />
   </ItemGroup>
+
+  <!-- For test the .targets file (just copy/paste). COMMENT IT TO TEST WITH NUGET PACKAGE -->
+  <PropertyGroup>
+    <_YamlToJsonTaskAssembly>$(MSBuildThisFileDirectory)..\MSBuild.Yaml\bin\Debug\netstandard2.0\PosInformatique.MSBuild.Yaml.dll</_YamlToJsonTaskAssembly>
+  </PropertyGroup>
+
+  <UsingTask TaskName="PosInformatique.MSBuild.Yaml.YamlToJson" AssemblyFile="$(_YamlToJsonTaskAssembly)" />
+
+  <ItemGroup>
+    <None Update="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
+      <DependentUpon>$([System.String]::Copy('%(Filename)').Replace('.Designer', '')).yaml</DependentUpon>
+    </None>
+    <Content Update="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
+      <DependentUpon>$([System.String]::Copy('%(Filename)').Replace('.Designer', '')).yaml</DependentUpon>
+    </Content>
+    <EmbeddedResource Update="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
+      <DependentUpon>$([System.String]::Copy('%(Filename)').Replace('.Designer', '')).yaml</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Target Name="ConvertYamlToJsonFiles" BeforeTargets="BeforeCompile" Inputs="@(YamlToJsonFile)" Outputs="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
+    <YamlToJson YamlInputFile="%(YamlToJsonFile.Identity)"
+                JsonOutputFile="%(YamlToJsonFile.RelativeDir)%(YamlToJsonFile.Filename).Designer.json"
+                WithIndentation="%(YamlToJsonFile.WithIndentation)"/>
+  </Target>
+  <!-- End of the code for test -->
 
 </Project>
