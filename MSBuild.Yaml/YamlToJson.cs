@@ -6,10 +6,7 @@
 namespace PosInformatique.MSBuild.Yaml
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.IO;
-    using System.Linq;
     using Microsoft.Build.Framework;
     using Newtonsoft.Json;
     using YamlDotNet.Serialization;
