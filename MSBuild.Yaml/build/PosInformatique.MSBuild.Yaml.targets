@@ -1,0 +1,28 @@
+﻿<Project TreatAsLocalProperty="_YamlToJsonTaskAssembly">
+
+  <PropertyGroup>
+    <_YamlToJsonTaskAssembly>$(MSBuildThisFileDirectory)..\tasks\netstandard2.0\PosInformatique.MSBuild.Yaml.dll</_YamlToJsonTaskAssembly>
+  </PropertyGroup>
+
+  <UsingTask TaskName="PosInformatique.MSBuild.Yaml.YamlToJson" AssemblyFile="$(_YamlToJsonTaskAssembly)" />
+
+  <!-- Defines the "DependentUpon" for the @(YamlToJsonFile) to be linked to the xxx.Designer.json files -->
+  <ItemGroup>
+    <None Update="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
+      <DependentUpon>$([System.String]::Copy('%(Filename)').Replace('.Designer', '')).yaml</DependentUpon>
+    </None>
+    <Content Update="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
+      <DependentUpon>$([System.String]::Copy('%(Filename)').Replace('.Designer', '')).yaml</DependentUpon>
+    </Content>
+    <EmbeddedResource Update="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
+      <DependentUpon>$([System.String]::Copy('%(Filename)').Replace('.Designer', '')).yaml</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- Targets -->
+  <Target Name="ConvertYamlToJsonFiles" BeforeTargets="BeforeCompile" Inputs="@(YamlToJsonFile)" Outputs="@(YamlToJsonFile->'%(RelativeDir)%(Filename).Designer.json')">
+    <YamlToJson YamlInputFile="%(YamlToJsonFile.Identity)"
+                JsonOutputFile="%(YamlToJsonFile.RelativeDir)%(YamlToJsonFile.Filename).Designer.json"
+                WithIndentation="%(YamlToJsonFile.WithIndentation)" />
+  </Target>
+</Project>
