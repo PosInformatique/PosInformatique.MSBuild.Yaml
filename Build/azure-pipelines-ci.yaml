@@ -16,11 +16,11 @@ pool:
 
 steps:
 
-# Install NuGet 4.4.1
+# Install NuGet 5.5.1
 - task: NuGetToolInstaller@1
-  displayName: 'Install NuGet 4.4.1'
+  displayName: 'Install NuGet 5.5.1'
   inputs:
-    versionSpec: '4.4.1'
+    versionSpec: '5.5.1'
 
 # Restore NuGet packages
 - task: NuGetCommand@2
