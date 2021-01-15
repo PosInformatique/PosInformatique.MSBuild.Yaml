@@ -54,7 +54,7 @@ To declare YAML files to generate automatically before compilation:
 - Install the [PosInformatique.MSBuild.Yaml](https://www.nuget.org/packages/PosInformatique.MSBuild.Yaml/)
 package using the following command line in the Visual Studio Package Manager console:
 ```powershell
-Install-Package PosInformatique.AspNetCore.Server.AspNet
+Install-Package PosInformatique.MSBuild.Yaml
 ```
 
 - Updates the `.xxproj` file by declaring the YAML files in the `<YamlToJsonFile>`
