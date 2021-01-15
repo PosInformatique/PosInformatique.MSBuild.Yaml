@@ -15,12 +15,14 @@
     <RepositoryUrl>https://github.com/PosInformatique/PosInformatique.MSBuild.Yaml.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>msbuild yaml json converter</PackageTags>
-    <PackageReleaseNotes>1.0.0 - Initial version</PackageReleaseNotes>
+    <PackageReleaseNotes>1.0.1 - Fix bugs with scalar values as boolean, integer, decimal and null.
+1.0.0 - Initial version</PackageReleaseNotes>
 
     <!-- NuGet packaging options -->
     <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NoPackageAnalysis>true</NoPackageAnalysis>
+    <Version>1.0.1</Version>
     
   </PropertyGroup>
 
