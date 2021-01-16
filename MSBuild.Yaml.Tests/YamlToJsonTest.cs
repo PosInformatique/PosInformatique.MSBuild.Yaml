@@ -49,8 +49,13 @@ namespace PosInformatique.MSBuild.Yaml.Tests
             var yaml = @"
 object:
 - value: 'v1'
+- booleanValue: false
+- decimalValue: 11.22
+- stringValue: ""Blabla""
+- stringValue2: 'Blabla'
+- nullValue: 
 - innerObject:
-  innerValue: 1234
+    innerIntValue: 1234
 ";
 
             File.WriteAllText(@"sub\folder\yaml.yaml", yaml);
@@ -78,7 +83,33 @@ object:
 
             var json = File.ReadAllText(@"sub\folder\json.json");
 
-            json.Should().Be("{\r\n  \"object\": [\r\n    {\r\n      \"value\": \"v1\"\r\n    },\r\n    {\r\n      \"innerObject\": null,\r\n      \"innerValue\": \"1234\"\r\n    }\r\n  ]\r\n}");
+            json.Should().Be(@"{
+  ""object"": [
+    {
+      ""value"": ""v1""
+    },
+    {
+      ""booleanValue"": false
+    },
+    {
+      ""decimalValue"": 11.22
+    },
+    {
+      ""stringValue"": ""Blabla""
+    },
+    {
+      ""stringValue2"": ""Blabla""
+    },
+    {
+      ""nullValue"": null
+    },
+    {
+      ""innerObject"": {
+        ""innerIntValue"": 1234
+      }
+    }
+  ]
+}");
 
             buildEngine.Verify(b => b.LogMessageEvent(It.IsAny<BuildMessageEventArgs>()));
         }
@@ -96,8 +127,13 @@ object:
             var yaml = @"
 object:
 - value: 'v1'
+- booleanValue: false
+- decimalValue: 11.22
+- stringValue: ""Blabla""
+- stringValue2: 'Blabla'
+- nullValue: 
 - innerObject:
-  innerValue: 1234
+    innerIntValue: 1234
 ";
 
             File.WriteAllText(@"sub\folder\yaml.yaml", yaml);
@@ -125,7 +161,7 @@ object:
 
             var json = File.ReadAllText(@"sub\folder\json.json");
 
-            json.Should().Be("{\"object\":[{\"value\":\"v1\"},{\"innerObject\":null,\"innerValue\":\"1234\"}]}");
+            json.Should().Be(@"{""object"":[{""value"":""v1""},{""booleanValue"":false},{""decimalValue"":11.22},{""stringValue"":""Blabla""},{""stringValue2"":""Blabla""},{""nullValue"":null},{""innerObject"":{""innerIntValue"":1234}}]}");
            
             buildEngine.Verify(b => b.LogMessageEvent(It.IsAny<BuildMessageEventArgs>()));
         }
