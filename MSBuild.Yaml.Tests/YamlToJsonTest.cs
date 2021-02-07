@@ -53,6 +53,8 @@ object:
 - decimalValue: 11.22
 - stringValue: ""Blabla""
 - stringValue2: 'Blabla'
+- stringValueWithInteger: '12345'
+- stringValueWithDecimal: '12.34'
 - nullValue: 
 - innerObject:
     innerIntValue: 1234
@@ -101,6 +103,12 @@ object:
       ""stringValue2"": ""Blabla""
     },
     {
+      ""stringValueWithInteger"": ""12345""
+    },
+    {
+      ""stringValueWithDecimal"": ""12.34""
+    },
+    {
       ""nullValue"": null
     },
     {
@@ -131,6 +139,8 @@ object:
 - decimalValue: 11.22
 - stringValue: ""Blabla""
 - stringValue2: 'Blabla'
+- stringValueWithInteger: '12345'
+- stringValueWithDecimal: '12.34'
 - nullValue: 
 - innerObject:
     innerIntValue: 1234
@@ -161,7 +171,7 @@ object:
 
             var json = File.ReadAllText(@"sub\folder\json.json");
 
-            json.Should().Be(@"{""object"":[{""value"":""v1""},{""booleanValue"":false},{""decimalValue"":11.22},{""stringValue"":""Blabla""},{""stringValue2"":""Blabla""},{""nullValue"":null},{""innerObject"":{""innerIntValue"":1234}}]}");
+            json.Should().Be(@"{""object"":[{""value"":""v1""},{""booleanValue"":false},{""decimalValue"":11.22},{""stringValue"":""Blabla""},{""stringValue2"":""Blabla""},{""stringValueWithInteger"":""12345""},{""stringValueWithDecimal"":""12.34""},{""nullValue"":null},{""innerObject"":{""innerIntValue"":1234}}]}");
            
             buildEngine.Verify(b => b.LogMessageEvent(It.IsAny<BuildMessageEventArgs>()));
         }
