@@ -130,6 +130,13 @@ namespace PosInformatique.MSBuild.Yaml
 
                         return true;
                     }
+                    else if (scalar.IsQuotedImplicit)
+                    {
+                        value = scalar.Value;
+                        reader.MoveNext();
+
+                        return true;
+                    }
                     else if (bool.TryParse(scalar.Value, out bool booleanValue))
                     {
                         value = booleanValue;
